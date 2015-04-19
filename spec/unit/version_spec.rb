@@ -15,7 +15,7 @@ describe 'safari_test::version' do
   context 'non mac' do
     let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
-    it 'returns safari version as nil' do
+    it 'logs safari version is not supported' do
       expect(chef_run).to write_log('Safari version is not available on this platform.')
     end
   end
