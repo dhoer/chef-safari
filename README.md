@@ -22,8 +22,8 @@ Chef 11.14.2 or higher.
 
 Include the safari as a dependency to make library method available.
 
-Library method `safari_version` is provided to retrieve the safari short version by default
-(CFBundleShortVersionString):
+Library method `safari_version` is provided to retrieve the safari short version
+(CFBundleShortVersionString) by default:
 
 ```ruby
 short_version = safari_version # => 8.0.4
@@ -38,7 +38,7 @@ bundle_version = safari_version('CFBundleVersion') # => 10600.4.10.7
 **Tip:** use `allow_any_instance_of` to stub safari_version method when testing with rspec:
 
 ```ruby
-allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.0')
+allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.4')
 ```
 
 ## Getting Help
