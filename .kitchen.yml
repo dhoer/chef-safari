@@ -1,0 +1,20 @@
+---
+driver:
+  name: vagrant
+  provider: vmware_fusion
+  customize:
+      memory: 2048
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: macosx-10.10
+    driver:
+      box: macosx-10.10
+
+suites:
+  - name: safari_test
+    run_list:
+      - recipe[safari_test::version]
+    attributes:
