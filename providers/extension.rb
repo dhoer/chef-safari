@@ -4,18 +4,15 @@ end
 
 action :install do
   converge_by('safari_extension') do
-    # TODO: add apple script to load safari extension
-    # http://stackoverflow.com/questions/24614477/how-to-install-extension-in-safari-by-applescript
-    # https://macmule.com/2014/10/15/deploying-installing-safari-extensions-on-safari-6-1-7-2/
+    execute "sudo #{Chef::Config[:file_cache_path]}/tccutil.py -i /usr/bin/osascript"
+    execute "sudo #{Chef::Config[:file_cache_path]}/tccutil.py -i /usr/bin/osascript"
     execute <<EOF
-osascript -e
-'tell application "Safari"
+osascript -e 'tell application "Safari"
   activate
 end tell'
 EOF
     execute <<EOF
-osascript -e
-'ignoring application responses
+osascript -e 'ignoring application responses
   tell application "Safari"
     open "'"#{new_resource.safariextz}"'"
     end tell
