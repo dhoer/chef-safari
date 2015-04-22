@@ -10,6 +10,10 @@ describe 'safari_test::version' do
     it 'returns safari version' do
       expect(chef_run).to write_log('8.0.4')
     end
+
+    it 'writes version to file' do
+      expect(chef_run).to run_execute('echo 8.0.4 > /tmp/safari_version.txt')
+    end
   end
 
   context 'non mac' do
@@ -17,6 +21,10 @@ describe 'safari_test::version' do
 
     it 'logs safari version is not supported' do
       expect(chef_run).to write_log('Safari version is not available on this platform.')
+    end
+
+    it 'writes version to file' do
+      expect(chef_run).to run_execute('echo  > /tmp/safari_version.txt')
     end
   end
 end

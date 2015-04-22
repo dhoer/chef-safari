@@ -8,7 +8,7 @@ describe 'safari_test::version' do
   when 'darwin'
     describe file('/tmp/safari_version.txt') do
       it { should be_file }
-      its(:content) { should match /8.0/ }
+      its(:content) { should match(/8.0/) }
     end
   end
 end

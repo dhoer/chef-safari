@@ -4,14 +4,21 @@ end
 
 action :install do
   converge_by('safari_extension') do
-    execute "sudo #{Chef::Config[:file_cache_path]}/tccutil.py -i /usr/bin/osascript"
-    execute "sudo #{Chef::Config[:file_cache_path]}/tccutil.py -i /usr/bin/osascript"
-    execute <<EOF
-osascript -e 'tell application "Safari"
-  activate
-end tell'
-EOF
-    execute <<EOF
+    if platform_family?('mac_os_x')
+      tccutil = '/usr/sbin/tccutil.py'
+
+      remote_file tccutil do
+        source node['safari']['tccutil']['url']
+        checksum node['safari']['tccutil']['checksum']
+        mode '0755'
+        not_if { ::File.exist?(tccutil) }
+      end
+
+      execute "#{tccutil} -i com.apple.RemoteDesktopAgent"
+      execute "#{tccutil} -i com.apple.Safari"
+
+      execute new_resource.safariextz do
+        command <<EOF
 osascript -e 'ignoring application responses
   tell application "Safari"
     open "'"#{new_resource.safariextz}"'"
@@ -27,5 +34,9 @@ tell application "System Events"
   end tell
 end tell'
 EOF
+      end
+    else
+      log('Resource safari_extension is not supported on this platform.') { level :warn }
+    end
   end
 end
