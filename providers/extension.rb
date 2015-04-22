@@ -11,11 +11,19 @@ action :install do
         source node['safari']['tccutil']['url']
         checksum node['safari']['tccutil']['checksum']
         mode '0755'
-        not_if { ::File.exist?(tccutil) }
       end
 
-      execute "#{tccutil} -i com.apple.RemoteDesktopAgent"
-      execute "#{tccutil} -i com.apple.Safari"
+      execute "sudo #{tccutil} -i com.apple.RemoteDesktopAgent"
+      execute "sudo #{tccutil} -i com.apple.Safari"
+      execute "sudo #{tccutil} -i /usr/libexec/sshd-keygen-wrapper"
+
+      execute 'start safari' do
+        command <<EOF
+osascript -e 'tell application "Safari"
+activate
+end tell'
+EOF
+      end
 
       execute new_resource.safariextz do
         command <<EOF
