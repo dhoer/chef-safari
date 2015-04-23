@@ -1,7 +1,9 @@
 # https://support.apple.com/en-us/HT201710
-execute 'Activate Remote Desktop Sharing, enable access and grant full privileges for the users "vagrant", restart ARD Agent and Menu extra' do
+execute 'Activate Remote Desktop Sharing, enable access and grant full privileges for the users "vagrant", '\
+'restart ARD Agent and Menu extra' do
   command <<EOF
-sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -users vagrant -privs -all -restart -agent -menu
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
+ -activate -configure -access -on -users vagrant -privs -all -restart -agent -menu
 EOF
 end
 
