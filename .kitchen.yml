@@ -12,9 +12,10 @@ platforms:
   - name: macosx-10.10
     driver:
       box: macosx-10.10
-
+      gui: true
 suites:
   - name: safari_test
     run_list:
       - recipe[safari_test::extension]
+      - recipe[safari_test::version]
     attributes:
