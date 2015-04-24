@@ -3,23 +3,6 @@ def whyrun_supported?
   true
 end
 
-def accessibility
-  tccutil = '/usr/sbin/tccutil.py'
-
-  remote_file tccutil do
-    source node['safari']['tccutil']['url']
-    checksum node['safari']['tccutil']['checksum']
-    mode '0755'
-  end
-
-  # System Preferences > Security & Privacy > Privacy > Accessibility
-  execute "sudo #{tccutil} -i com.apple.RemoteDesktopAgent"
-  execute "sudo #{tccutil} -i com.apple.Safari"
-  execute "sudo #{tccutil} -i /usr/libexec/sshd-keygen-wrapper"
-  # execute "sudo #{tccutil} -d com.apple.ScriptEditor2"
-  # execute "sudo #{tccutil} -d com.apple.systemuiserver"
-end
-
 def open_safari
   execute new_resource.safariextz do
     command <<EOF
@@ -66,7 +49,6 @@ end
 action :install do
   converge_by('safari_extension') do
     if platform_family?('mac_os_x')
-      accessibility
       open_safari
       install_extension
       close_safari
