@@ -22,14 +22,14 @@ Chef 11.14.2 or higher.
 
 Include the safari as a dependency to make library method available.
 
-Library method `safari_version` is provided to retrieve the safari short version
-(CFBundleShortVersionString) by default:
+Library method `safari_version` is provided to retrieve CFBundleShortVersionString by default:
 
 ```ruby
-short_version = safari_version # => 8.0.4
+version = safari_version # => 8.0.4
 ```
 
-You can return other version types by passing its name (e.g. CFBundleVersion, SourceVersion or BuildVersion)
+You can return other version types by passing its name (e.g. BuildVersion, CFBundleVersion, ProjectName or
+SourceVersion)
 
 ```ruby
 bundle_version = safari_version('CFBundleVersion') # => 10600.4.10.7
