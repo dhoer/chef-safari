@@ -1,32 +1,22 @@
 if platform_family?('mac_os_x')
-  # https://support.apple.com/en-us/HT201710
-  execute 'activate remote desktop sharing for vagrant' do
-    command <<EOF
-sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart \
- -activate -configure -access -on -users vagrant -privs -all -restart -agent -menu
-EOF
-  end
-
   execute 'switch to login window' do
-    command <<EOF
-sudo "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend
-EOF
+    command 'sudo "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession" -suspend'
   end
 
   execute 'login to gui' do
     command <<EOF
-osascript -l JavaScript -e "
-var se = Application('System Events')
-se.keystroke('vagrant')
-se.keystroke.return
-delay(3)
-se.keystroke('vagrant')
-se.keystroke.return
-delay(3)
-se.keystroke.tab
-se.keystroke.return
-se.keystroke.return
-"
+osascript -e '
+  tell application "System Events"
+    keystroke "vagrant"
+    keystroke return
+    delay 3.0
+    keystroke "vagrant"
+    delay 3.0
+    keystroke tab
+    keystroke return
+    keystroke return
+  end tell
+'
 EOF
   end
 
@@ -35,5 +25,7 @@ EOF
     not_if { ::File.exist?('/Library/Application Support/com.apple.TCC/TCC.db') }
   end
 
-  macosx_accessibility ['com.apple.RemoteDesktopAgent', '/usr/libexec/sshd-keygen-wrapper']
+  macosx_accessibility 'add remote accessibiltiy' do
+    items ['com.apple.RemoteDesktopAgent', '/usr/libexec/sshd-keygen-wrapper']
+  end
 end
