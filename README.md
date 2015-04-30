@@ -8,7 +8,7 @@
 [travis]: https://travis-ci.org/dhoer/chef-safari
 [github]: https://github.com/dhoer/chef-safari/issues
 
-This cookbook provides `safari_version` library method to retrieve Safari version installed, and provides
+This cookbook provides a `safari_version` library method to retrieve Safari version installed, and a
 `safari_extension` resource to install Safari extensions.
 
 ## Requirements
@@ -23,13 +23,13 @@ This cookbook provides `safari_version` library method to retrieve Safari versio
 
 Include the safari as a dependency to make library method available.
 
-Library method `safari_version` is provided to retrieve CFBundleShortVersionString by default:
+The `safari_version` retrieves CFBundleShortVersionString by default:
 
 ```ruby
 version = safari_version # => 8.0.4
 ```
 
-You can return other version types by passing its name (e.g. BuildVersion, CFBundleVersion, ProjectName or
+You can return other version types by passing the name (e.g. BuildVersion, CFBundleVersion, ProjectName or
 SourceVersion)
 
 ```ruby
@@ -44,7 +44,7 @@ allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.
 
 ## safari_extension
 
-Install Safari extensions.
+Installs Safari extensions.
 
 ### Attribute
 
@@ -63,7 +63,7 @@ end
 
 ## ChefSpec Matchers
 
-The Chrome cookbook includes custom [ChefSpec](https://github.com/sethvargo/chefspec) matchers you can use to test your
+This cookbook includes a custom [ChefSpec](https://github.com/sethvargo/chefspec) matcher you can use to test your
 own cookbooks.
 
 Example Matcher Usage
@@ -73,7 +73,7 @@ expect(chef_run).to install_safari_extension('a safari extension')
   .with(safariextz: '/path/to/a.safariextz')
 ```
 
-Chrome Cookbook Matchers
+Cookbook Matcher
 
 - install_safari_extension(safariextz)
 
