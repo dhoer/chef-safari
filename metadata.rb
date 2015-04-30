@@ -8,4 +8,4 @@ source_url 'https://github.com/dhoer/chef-safari'
 issues_url 'https://github.com/dhoer/chef-safari/issues'
 version '0.2.0'
 
-supports 'mac_os_x'
+supports 'mac_os_x', '>= 10.9'

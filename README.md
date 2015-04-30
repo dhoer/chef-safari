@@ -8,8 +8,8 @@
 [travis]: https://travis-ci.org/dhoer/chef-safari
 [github]: https://github.com/dhoer/chef-safari/issues
 
-This cookbook provides `safari_version` library method to retrieve safari version installed, and and provides
-`safari_extensions` resource to install safari extensions.
+This cookbook provides `safari_version` library method to retrieve Safari version installed, and provides
+`safari_extension` resource to install Safari extensions.
 
 ## Requirements
 
@@ -55,7 +55,7 @@ Install Safari extensions.
 Install a Safari extension:
 
 ```ruby
-safari_extension
+safari_extension 'a safari extension' do
   safariextz '/path/to/a.safariextz'
   action :install
 end
@@ -69,7 +69,8 @@ own cookbooks.
 Example Matcher Usage
 
 ```ruby
-expect(chef_run).to install_safari_extension('/path/to/a.safariextz')
+expect(chef_run).to install_safari_extension('a safari extension')
+  .with(safariextz: '/path/to/a.safariextz')
 ```
 
 Chrome Cookbook Matchers

@@ -16,7 +16,8 @@ describe 'safari_test::extension' do
     end
 
     it 'installs extension' do
-      expect(chef_run).to install_safari_extension('.chef/chefspec/cache/SafariDriver.safariextz')
+      expect(chef_run).to install_safari_extension('SafariDriver Extension')
+        .with(safariextz: '.chef/chefspec/cache/SafariDriver.safariextz')
     end
   end
 
@@ -33,7 +34,8 @@ describe 'safari_test::extension' do
     end
 
     it 'installs extension' do
-      expect(chef_run).to install_safari_extension('.chef/chefspec/cache/SafariDriver.safariextz')
+      expect(chef_run).to install_safari_extension('SafariDriver Extension')
+        .with(safariextz: '.chef/chefspec/cache/SafariDriver.safariextz')
     end
 
     it 'logs safari_extension is not supported' do
