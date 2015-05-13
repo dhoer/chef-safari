@@ -4,8 +4,6 @@ maintainer_email 'dennis.hoer@gmail.com'
 license 'MIT'
 description 'Configures Apple Safari'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-source_url 'https://github.com/dhoer/chef-safari'
-issues_url 'https://github.com/dhoer/chef-safari/issues'
-version '0.2.0'
+version '0.2.1'
 
 supports 'mac_os_x', '>= 10.9'
