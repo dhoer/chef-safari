@@ -7,6 +7,5 @@ def safari_version(type = 'CFBundleShortVersionString')
     cmd.stdout.strip
   else
     log('Safari version is not available on this platform.') { level :warn }
-    nil
   end
 end

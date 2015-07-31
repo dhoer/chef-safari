@@ -13,7 +13,9 @@ This cookbook provides a `safari_version` library method to retrieve Safari vers
 
 ## Requirements
 
-- Chef 11.14.2 or higher
+- User must be logged into GUI before calling `safari_extension` (see 
+[macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook)
+- Chef 11.14 or higher (sensitive attribute introduced)
 
 ### Platforms
 
@@ -21,7 +23,9 @@ This cookbook provides a `safari_version` library method to retrieve Safari vers
 
 ## Usage
 
-Include the safari as a dependency to make library method available.
+Include the safari as a dependency to make library method and extension resource available.
+
+### safari_version
 
 The `safari_version` retrieves CFBundleShortVersionString by default:
 
@@ -42,15 +46,16 @@ bundle_version = safari_version('CFBundleVersion') # => 10600.4.10.7
 allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.4')
 ```
 
-## safari_extension
+### safari_extension
 
-Installs Safari extensions.
+Installs Safari extensions. User must be logged into GUI before calling `safari_extension` (see 
+[macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook)
 
-### Attribute
+#### Attribute
 
-- `safariextz` - Path to Safari extension to install
+- `safariextz` - Path to Safari extension to install.
 
-### Example
+#### Example
 
 Install a Safari extension:
 
@@ -69,8 +74,8 @@ own cookbooks.
 Example Matcher Usage
 
 ```ruby
-expect(chef_run).to install_safari_extension('a safari extension')
-  .with(safariextz: '/path/to/a.safariextz')
+expect(chef_run).to install_safari_extension('a safari extension').with(
+  safariextz: '/path/to/a.safariextz')
 ```
 
 Cookbook Matcher
