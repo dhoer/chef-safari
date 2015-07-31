@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
 def whyrun_supported?
   true
 end
@@ -9,7 +8,7 @@ action :install do
   converge_by("install safari_extension #{new_resource.safariextz}") do
     if platform_family?('mac_os_x')
       execute new_resource.safariextz do
-        retries 1
+        retries 10
         command <<-EOF
           osascript -e '
             if application "Safari" is running then quit application "Safari"

@@ -15,6 +15,11 @@ describe 'safari_test::extension' do
       expect(chef_run).to create_remote_file('.chef/chefspec/cache/SafariDriver.safariextz')
     end
 
+    it 'logs into gui' do
+      expect(chef_run).to run_macosx_gui_login('vagrant')
+        .with(password: 'vagrant')
+    end
+
     it 'installs extension' do
       expect(chef_run).to install_safari_extension('SafariDriver Extension')
         .with(safariextz: '.chef/chefspec/cache/SafariDriver.safariextz')

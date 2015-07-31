@@ -9,7 +9,6 @@ gem 'chef', '~> 11.14'
 group :integration do
   gem 'test-kitchen', '~> 1.4'
   gem 'kitchen-vagrant', '~> 0.18'
-  gem 'vagrant-wrapper', '~> 2.0'
   gem 'rspec'
   gem 'selenium-webdriver'
   gem 'rspec-expectations'
