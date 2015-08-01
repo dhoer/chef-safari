@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0
+
+- Production ready
+
 ## 0.2.1
 
 - Remove Chef 12 source_url and issues_url from metadata
