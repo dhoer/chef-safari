@@ -13,7 +13,7 @@ This cookbook provides a `safari_version` library method to retrieve Safari vers
 
 ## Requirements
 
-- User must be logged into GUI before calling `safari_extension` (see 
+- User must be logged into GUI before calling safari_extension (see 
 [macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook)
 - Chef 11.14 or higher (sensitive attribute introduced)
 
@@ -48,12 +48,12 @@ allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.
 
 ### safari_extension
 
-Installs Safari extensions. User must be logged into GUI before calling `safari_extension` (see 
-[macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook)
+Installs Safari extensions. User must be logged into GUI before calling safari_extension (see 
+[macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook).
 
 #### Attribute
 
-- `safariextz` - Path to Safari extension to install.
+- `safariextz` (required) - Path to Safari extension to install. Defaults to the name of the resource block.
 
 #### Example
 
