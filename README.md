@@ -27,7 +27,7 @@ Include the safari as a dependency to make library method and extension resource
 
 ### safari_version
 
-The `safari_version` retrieves CFBundleShortVersionString by default:
+The safari_version retrieves CFBundleShortVersionString by default:
 
 ```ruby
 version = safari_version # => 8.0.4
@@ -40,7 +40,7 @@ SourceVersion)
 bundle_version = safari_version('CFBundleVersion') # => 10600.4.10.7
 ```
 
-**Tip:** use `allow_any_instance_of` to stub safari_version method when testing with rspec:
+**Tip:** use allow_any_instance_of to stub safari_version method when testing with rspec:
 
 ```ruby
 allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('8.0.4')
