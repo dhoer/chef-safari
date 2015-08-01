@@ -10,9 +10,13 @@ describe 'safari_test::version' do
     it 'returns safari version' do
       expect(chef_run).to write_log('8.0.4')
     end
+
+    it 'writes version to file' do
+      expect(chef_run).to run_execute('echo 8.0.4 > /tmp/safari_version.txt')
+    end
   end
 
-  context 'non mac' do
+  context 'non-mac' do
     let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
     it 'logs empty string' do
