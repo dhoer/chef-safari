@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Update metadata description, source_url and issues_url
+
 ## 1.0.0
 
 - Production ready
