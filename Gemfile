@@ -8,6 +8,6 @@ gem 'chef', '~> 11.18'
 
 group :integration do
   gem 'test-kitchen', '~> 1.4'
-  gem 'kitchen-vagrant', '~> 0.18'
+  gem 'kitchen-vagrant', '~> 0.18' unless ENV['TRAVIS_OS_NAME'] && ENV['TRAVIS_OS_NAME'] == 'osx'
   gem 'kitchen-localhost', '~> 0.3'
 end
