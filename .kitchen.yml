@@ -12,7 +12,7 @@ provisioner:
 platforms:
   - name: macosx-10.10
     driver:
-      box: macosx-10.10
+      name: localhost
 
 suites:
   - name: safari_test
