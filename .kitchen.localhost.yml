@@ -15,3 +15,5 @@ suites:
       - recipe[safari_test::extension]
       - recipe[safari_test::version]
     attributes:
+      safari_test:
+        user: travis
