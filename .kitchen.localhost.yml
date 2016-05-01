@@ -1,18 +1,13 @@
+# Usage: KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen list
 ---
 driver:
-  name: vagrant
-  provider: vmware_fusion
-  customize:
-      memory: 2048
+  name: localhost
 
 provisioner:
-  name: chef_solo
-  require_chef_omnibus: 11.14
+  name: chef_zero
 
 platforms:
   - name: macosx-10.10
-    driver:
-      box: macosx-10.10
 
 suites:
   - name: safari_test

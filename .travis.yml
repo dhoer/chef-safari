@@ -7,9 +7,8 @@ os:
   - osx
 
 install:
-  - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
-  - chef exec bundle update
+  - bundle update
 
 script:
-  - chef exec bundle exec rake
-  - chef exec bundle exec kitchen test
+  - bundle exec rake
+  - KITCHEN_YAML=.kitchen.localhost.yml bundle exec kitchen test
