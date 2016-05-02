@@ -2,16 +2,16 @@ language: generic
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode7.3
-    - os: osx
-      osx_image: xcode7.2
-    - os: osx
-      osx_image: xcode7.1
-    - os: osx
-      osx_image: xcode7
-    - os: osx
-      osx_image: xcode6.4
+#    - os: osx
+#      osx_image: xcode7.3
+#    - os: osx
+#      osx_image: xcode7.2
+#    - os: osx
+#      osx_image: xcode7.1
+#    - os: osx
+#      osx_image: xcode7
+#    - os: osx
+#      osx_image: xcode6.4
     - os: osx
       osx_image: xcode6.3
     - os: osx
@@ -22,5 +22,6 @@ install:
   - chef exec bundle update
 
 script:
+  - env
   - chef exec bundle exec rake
   - KITCHEN_YAML=.kitchen.localhost.yml chef exec bundle exec kitchen test

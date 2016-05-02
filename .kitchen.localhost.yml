@@ -7,7 +7,7 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: macosx-10.10
+  - name: macosx-10
 
 suites:
   - name: safari_test
