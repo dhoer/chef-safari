@@ -23,6 +23,10 @@ user node['safari_test']['user'] do
   manage_home true
 end
 
+directory "/Users/#{node['safari_test']['user']}/Library" do
+  recursive true
+end
+
 macosx_gui_login node['safari_test']['user'] do
   password node['safari_test']['user']
 end
