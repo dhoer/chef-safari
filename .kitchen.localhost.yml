@@ -16,4 +16,4 @@ suites:
       - recipe[safari_test::version]
     attributes:
       safari_test:
-        user: safari
+        user: travis
