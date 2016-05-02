@@ -1,5 +1,7 @@
 language: generic
 
+sudo: required
+
 matrix:
   include:
 #    - os: osx
@@ -22,9 +24,8 @@ before_install:
 
 install:
   - curl -L https://www.chef.io/chef/install.sh | sudo bash -s -- -P chefdk
-  - chef exec bundle update # --without integration
+  - chef exec bundle update
 
 script:
-  - env
   - chef exec bundle exec rake
   - KITCHEN_YAML=.kitchen.localhost.yml chef exec bundle exec kitchen test
