@@ -9,7 +9,7 @@ end
 privacy_services_manager 'grant safari access' do
   service 'accessibility'
   user node['safari_test']['user']
-  applications ['SystemUIServer','com.apple.Safari']
+  applications ['com.apple.SystemUIServer','com.apple.Safari']
   action :add
 end
 
