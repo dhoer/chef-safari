@@ -9,7 +9,7 @@ end
 privacy_services_manager 'grant safari access' do
   service 'accessibility'
   user node['safari_test']['user']
-  applications ['com.apple.SystemUIServer','com.apple.Safari']
+  applications ['osascript','com.apple.Safari']
   action :add
 end
 
