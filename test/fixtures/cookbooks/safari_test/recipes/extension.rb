@@ -10,7 +10,7 @@ privacy_services_manager 'allow remote login' do
     /usr/bin/osascript
     com.apple.RemoteDesktopAgent
     /usr/libexec/sshd-keygen-wrapper
- )
+  )
   admin true
 end
 
