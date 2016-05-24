@@ -16,6 +16,7 @@ privacy_services_manager 'allow remote login' do
     com.apple.RemoteDesktopAgent
     /usr/libexec/sshd-keygen-wrapper
     com.apple.Safari
+    com.apple.Terminal
   )
   admin true
 end
