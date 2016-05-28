@@ -17,6 +17,6 @@ platforms:
 suites:
   - name: safari_test
     run_list:
-      - recipe[safari_test::extension]
-      - recipe[safari_test::version]
+      - safari_test::version
+      - safari_test::extension
     attributes:
