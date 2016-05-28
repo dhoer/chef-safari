@@ -6,13 +6,9 @@ privacy_services_manager 'allow remote login' do
   service 'accessibility'
   user node['safari_test']['user']
   applications %w(
-    /Applications/Safari.app
-    /System/Library/CoreServices/Finder.app
-    com.apple.systemevents
     /System/Library/CoreServices/SystemUIServer.app
     /System/Library/CoreServices/RemoteManagement/ARDAgent.app
     /usr/bin/osascript
-    /osascript
     com.apple.RemoteDesktopAgent
     /usr/libexec/sshd-keygen-wrapper
     com.apple.Safari
