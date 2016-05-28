@@ -13,6 +13,7 @@ privacy_services_manager 'allow remote login' do
     com.apple.RemoteDesktopAgent
     com.apple.Safari
     com.apple.ScriptEditor2
+    com.apple.systemevents
     com.apple.Terminal
   )
   admin true
