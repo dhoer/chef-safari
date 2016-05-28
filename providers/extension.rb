@@ -11,18 +11,17 @@ action :install do
         retries 10
         command <<-EOF
           osascript -e '
-            tell application "Finder" to open POSIX file "'"#{new_resource.safariextz}"'"
-            delay 10
+            tell application "Safari" to activate
+            delay 2
             tell application "System Events"
-              tell process "Safari"
+              tell application process "Safari"
                 set frontmost to true
-                  repeat until (exists window 1) and subrole of window 1 is "AXDialog" -- wait for dialog
-                    delay 1
-                  end repeat
-                click button 1 of front window -- install
+                tell application "Safari" to open location "/path/to/SafariDriver.safariextz"
+                delay 2
+                click button 1 of sheet 1 of window 1
               end tell
             end tell
-            if application "Safari" is running then quit application "Safari"
+            tell application "Safari" to quit
           '
         EOF
       end
@@ -31,3 +30,24 @@ action :install do
     end
   end
 end
+
+# execute new_resource.safariextz do
+#   retries 10
+#   command <<-EOF
+#           osascript -e '
+#             tell application "Finder" to open POSIX file "'"#{new_resource.safariextz}"'"
+#             delay 10
+#             tell application "System Events"
+#               tell process "Safari"
+#                 set frontmost to true
+#                   repeat until (exists window 1) and subrole of window 1 is "AXDialog" -- wait for dialog
+#                     delay 1
+#                   end repeat
+#                 click button 1 of front window -- install
+#               end tell
+#             end tell
+#             if application "Safari" is running then quit application "Safari"
+#           '
+#   EOF
+# end
+#
