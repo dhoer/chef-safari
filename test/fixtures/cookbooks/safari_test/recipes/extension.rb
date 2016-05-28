@@ -23,6 +23,7 @@ end
 
 macosx_gui_login node['safari_test']['user'] do
   password node['safari_test']['user']
+  sensitive false
 end
 
 safari_extension 'SafariDriver Extension' do
