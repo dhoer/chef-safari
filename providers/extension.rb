@@ -11,10 +11,6 @@ action :install do
         retries 10
         command <<-EOF
           osascript -e '
-            tell application "System Events"
-                activate
-                if not (UI elements enabled) then set (UI elements enabled) to true
-            end tell
             tell application "Finder" to open POSIX file "'"#{new_resource.safariextz}"'"
             delay 10
             tell application "System Events"
