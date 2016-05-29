@@ -11,7 +11,7 @@ This cookbook provides a `safari_version` library method to retrieve Safari vers
 
 ## Requirements
 
-- Safari 7 only (Safari 8+ no longer allows for automation)
+- Safari 7 only (Safari 8 or higher no longer allows for automation)
 - User must be logged into GUI before calling safari_extension (see 
 [macosx_gui_login](https://supermarket.chef.io/cookbooks/macosx_gui_login) cookbook)
 - Chef 11.14 or higher (sensitive attribute introduced)
@@ -29,7 +29,7 @@ Include the safari as a dependency to make library method and extension resource
 The safari_version retrieves CFBundleShortVersionString by default:
 
 ```ruby
-version = safari_version # => 8.0.4
+version = safari_version # => 7.0.6
 ```
 
 You can return other version types by passing the name (e.g. BuildVersion, CFBundleVersion, ProjectName or
@@ -42,7 +42,7 @@ bundle_version = safari_version('CFBundleVersion') # => 10600.4.10.7
 **Tip:** use allow_any_instance_of to stub safari_version method when testing with rspec:
 
 ```ruby
-allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('7.0.4')
+allow_any_instance_of(Chef::Recipe).to receive(:safari_version).and_return('7.0.6')
 ```
 
 ### safari_extension
