@@ -55,24 +55,3 @@ action :install do
     end
   end
 end
-
-# execute new_resource.safariextz do
-#   retries 10
-#   command <<-EOF
-#           osascript -e '
-#             tell application "Finder" to open POSIX file "'"#{new_resource.safariextz}"'"
-#             delay 10
-#             tell application "System Events"
-#               tell process "Safari"
-#                 set frontmost to true
-#                   repeat until (exists window 1) and subrole of window 1 is "AXDialog" -- wait for dialog
-#                     delay 1
-#                   end repeat
-#                 click button 1 of front window -- install
-#               end tell
-#             end tell
-#             if application "Safari" is running then quit application "Safari"
-#           '
-#   EOF
-# end
-#
