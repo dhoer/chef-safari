@@ -11,13 +11,15 @@ action :install do
         retries 10
         command <<-EOF
           osascript -e '
-            tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
-            delay 10
+            tell application "Safari" to activate
+            delay 2
             tell application "System Events"
-              tell application process "Safari"
-                set frontmost to true
-                click button 1 of sheet 1 of window 1
-              end tell
+                tell application process "Safari"
+                    set frontmost to true
+                    tell application "Safari" to open location "#{new_resource.safariextz}"
+                    delay 2
+                    click button 1 of sheet 1 of window 1
+                end tell
             end tell
             tell application "Safari" to quit
           '
