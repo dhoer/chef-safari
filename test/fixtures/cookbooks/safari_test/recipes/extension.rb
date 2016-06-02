@@ -8,6 +8,7 @@ privacy_services_manager 'allow remote login' do
   applications %w(
     /System/Library/CoreServices/RemoteManagement/ARDAgent.app
     /System/Library/CoreServices/SystemUIServer.app
+    /usr/bin/security
     /usr/bin/osascript
     /osascript
     /usr/libexec/sshd-keygen-wrapper
