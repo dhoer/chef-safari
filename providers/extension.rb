@@ -7,6 +7,17 @@ use_inline_resources
 action :install do
   converge_by("install safari_extension #{new_resource.safariextz}") do
     if platform_family?('mac_os_x')
+      execute 'keychain' do
+        retries 3
+        command <<-EOF
+          keychain="~/Library/Keychains/login.keychain"
+          security unlock-keychain -p travis ${keychain} &>/dev/null
+          if [ $? -ne 0 ];then
+            echo "Cannot open keychain ${keychain}"
+            exit 1
+          fi
+        EOF
+      end
       execute new_resource.safariextz do
         retries 10
         command <<-EOF
