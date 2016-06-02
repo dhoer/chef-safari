@@ -8,7 +8,7 @@ action :install do
   converge_by("install safari_extension #{new_resource.safariextz}") do
     if platform_family?('mac_os_x')
       execute 'security unlock-keychain -p travis ~/Library/Keychains/login.keychain'
-
+      execute '/Applications/Safari.app/Contents/MacOS/Safari'
       execute new_resource.safariextz do
         retries 3
         command <<-EOF
