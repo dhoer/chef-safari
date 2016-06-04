@@ -5,22 +5,23 @@ end
 privacy_services_manager 'allow remote login' do
   service 'accessibility'
   user node['safari_test']['user']
-  applications %w(
-    com.apple.Terminal
-    /System/Library/CoreServices/RemoteManagement/ARDAgent.app
-    /System/Library/CoreServices/SystemUIServer.app
-    /usr/bin/security
-    /usr/bin/osascript
-    /osascript
-    /usr/libexec/sshd-keygen-wrapper
-    com.apple.Finder
-    com.apple.RemoteDesktopAgent
-    com.apple.systempreferences
-    com.apple.preference.security
-    com.apple.Safari
-    com.apple.ScriptEditor2
-    com.apple.systemevents
-  )
+  applications([
+    "#{Chef::Config[:file_cache_path]}/safari_extension.sh",
+    'com.apple.Terminal',
+    '/System/Library/CoreServices/RemoteManagement/ARDAgent.app',
+    '/System/Library/CoreServices/SystemUIServer.app',
+    '/usr/bin/security',
+    '/usr/bin/osascript',
+    '/osascript',
+    '/usr/libexec/sshd-keygen-wrapper',
+    'com.apple.Finder',
+    'com.apple.RemoteDesktopAgent',
+    'com.apple.systempreferences',
+    'com.apple.preference.security',
+    'com.apple.Safari',
+    'com.apple.ScriptEditor2',
+    'com.apple.systemevents'
+  ])
   admin true
 end
 
