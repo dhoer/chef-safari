@@ -2,8 +2,10 @@
 driver:
   name: vagrant
   provider: vmware_fusion
-#  customize:
-#      memory: 2048
+  customize:
+    memory: 2048
+    cpus: 3
+
 
 provisioner:
   name: chef_solo
@@ -12,6 +14,7 @@ provisioner:
 platforms:
   - name: macosx-10.10
     driver:
+      gui: true
       box: macosx-10.10
 
 suites:
