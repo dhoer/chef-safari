@@ -22,6 +22,7 @@ action :install do
           end tell
           tell application "Safari" to quit
         EOF
+        mode '0700'
         only_if { major_ver == '9' }
       end
 
