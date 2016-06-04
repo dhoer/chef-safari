@@ -14,6 +14,8 @@ privacy_services_manager 'allow remote login' do
     com.apple.Finder
     com.apple.LockScreen
     com.apple.RemoteDesktopAgent
+    com.apple.systempreferences
+    com.apple.preference.security
     com.apple.Safari
     com.apple.ScriptEditor2
     com.apple.systemevents
