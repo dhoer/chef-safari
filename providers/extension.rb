@@ -60,7 +60,7 @@ EOF
         not_if { major_ver == '9' }
       end
 
-      privacy_services_manager 'allow remote login' do
+      privacy_services_manager 'trust safari extension' do
         service 'accessibility'
         user node['safari_test']['user']
         applications ["#{Chef::Config[:file_cache_path]}/safari_extension.sh"]
