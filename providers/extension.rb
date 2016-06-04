@@ -10,6 +10,8 @@ action :install do
       ver = safari_version
       major_ver = ver.slice(0, ver.index('.'))
 
+      execute "open #{new_resource.safariextz}"
+
       safari_9 = <<-EOF
           osascript -e '
             tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
