@@ -10,10 +10,19 @@ action :install do
       ver = safari_version
       major_ver = ver.slice(0, ver.index('.'))
 
+      file "#{Chef::Config[:file_cache_path]}/open_safari.sh" do
+        content <<-EOF
+#!/bin/bash
+open #{new_resource.safariextz}
+        EOF
+        mode '0777'
+        only_if { major_ver == '9' }
+      end
+
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<-EOF
 #!/usr/bin/env osascript
-
+tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
   tell application process "Safari"
@@ -22,12 +31,12 @@ tell application "System Events"
   end tell
 end tell
 tell application "Safari" to quit
-EOF
+        EOF
         mode '0777'
         only_if { major_ver == '9' }
       end
 
-      execute "open #{new_resource.safariextz}" do
+      execute "#{Chef::Config[:file_cache_path]}/open_safari.sh" do
         only_if { major_ver == '9' }
       end
 

@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'foodcritic', '~> 6.3'
-gem 'rubocop', '~> 0.40'
-gem 'chefspec', '~> 4.7'
-gem 'berkshelf', '~> 4.3'
-gem 'chef', '~> 12.10'
+gem 'foodcritic', '~> 4.0'
+gem 'rubocop', '~> 0.31'
+gem 'chefspec', '~> 4.2'
+gem 'berkshelf', '~> 3.1.5' # 3.2+ has performance issue with vmware_fusion
+gem 'chef', '~> 11.14'
 
 group :integration do
-  gem 'test-kitchen', '~> 1.9'
-  gem 'kitchen-vagrant', '~> 0.20'
-  gem 'kitchen-localhost', '~> 0.3'
+  gem 'test-kitchen', '~> 1.4'
+  gem 'kitchen-vagrant', '~> 0.18'
 end
