@@ -1,7 +1,5 @@
 remote_file "#{Chef::Config[:file_cache_path]}/SafariDriver.safariextz" do
   source node['safari_test']['safari_driver']['url']
-  mode '0777'
-  user node['safari_test']['user']
 end
 
 privacy_services_manager 'allow remote login' do

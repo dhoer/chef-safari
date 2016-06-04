@@ -10,22 +10,12 @@ action :install do
       ver = safari_version
       major_ver = ver.slice(0, ver.index('.'))
 
-      file "#{Chef::Config[:file_cache_path]}/open_safari.sh" do
-        content <<EOF
-#!/bin/bash
-open #{new_resource.safariextz}
-EOF
-        mode '0777'
-        user node['safari_test']['user']
-        # only_if { major_ver == '9' }
-      end
-
-      execute "#{Chef::Config[:file_cache_path]}/open_safari.sh"
+      execute "open #{new_resource.safariextz}"
 
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<EOF
 #!/usr/bin/env /usr/bin/osascript
-# tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
+tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
   tell application process "Safari"
@@ -43,7 +33,7 @@ EOF
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<EOF
 #!/usr/bin/env /usr/bin/osascript
-#tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
+tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
   tell process "Safari"
@@ -68,7 +58,9 @@ EOF
         admin true
       end
 
-      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh"
+      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
+        user node['safari_test']['user']
+      end
     else
       log('Resource safari_extension is not supported on this platform.') { level :warn }
     end
