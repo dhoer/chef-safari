@@ -19,6 +19,7 @@ privacy_services_manager 'allow remote login' do
     com.apple.ScriptEditor2
     com.apple.systemevents
     com.apple.Terminal
+    com.apple.iTerm
   )
   admin true
 end
