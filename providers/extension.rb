@@ -22,7 +22,7 @@ open #{new_resource.safariextz}
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<-EOF
 #!/usr/bin/env osascript
-tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
+# tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
   tell application process "Safari"
