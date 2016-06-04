@@ -22,13 +22,16 @@ tell application "System Events"
   end tell
 end tell
 tell application "Safari" to quit
-        EOF
+EOF
         mode '0700'
         only_if { major_ver == '9' }
       end
 
-      execute 'install safari extension' do
-        command "open #{new_resource.safariextz} && #{Chef::Config[:file_cache_path]}/safari_extension.sh"
+      execute "open #{new_resource.safariextz}" do
+        only_if { major_ver == '9' }
+      end
+
+      execute "open #{new_resource.safariextz} && #{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         only_if { major_ver == '9' }
       end
 
