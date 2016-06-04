@@ -23,7 +23,7 @@ tell application "System Events"
 end tell
 tell application "Safari" to quit
 EOF
-        mode '0700'
+        mode '0777'
         only_if { major_ver == '9' }
       end
 
@@ -31,7 +31,7 @@ EOF
         only_if { major_ver == '9' }
       end
 
-      execute "open #{new_resource.safariextz} && #{Chef::Config[:file_cache_path]}/safari_extension.sh" do
+      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         only_if { major_ver == '9' }
       end
 
