@@ -10,23 +10,29 @@ action :install do
       ver = safari_version
       major_ver = ver.slice(0, ver.index('.'))
 
-      execute "open #{new_resource.safariextz}"
-
-      safari_9 = <<-EOF
-          osascript -e '
-            tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
-            delay 10
-            tell application "System Events"
-              tell application process "Safari"
-                set frontmost to true
-                click button 1 of sheet 1 of window 1
-              end tell
+      file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
+        content <<-EOF
+          #!/usr/bin/env osascript
+          delay 10
+          tell application "System Events"
+            tell application process "Safari"
+              set frontmost to true
+              click button 1 of sheet 1 of window 1
             end tell
-            tell application "Safari" to quit
-          '
-      EOF
+          end tell
+          tell application "Safari" to quit
+        EOF
+        only_if { major_ver == '9' }
+      end
 
-      safari = <<-EOF
+      execute 'install safari extension' do
+        command "open #{new_resource.safariextz} && #{Chef::Config[:file_cache_path]}/safari_extension.sh"
+        only_if { major_ver == '9' }
+      end
+
+      execute new_resource.safariextz do
+        retries 3
+        command <<-EOF
         osascript -e '
           tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
           delay 10
@@ -41,11 +47,8 @@ action :install do
           end tell
           if application "Safari" is running then quit application "Safari"
         '
-      EOF
-
-      execute new_resource.safariextz do
-        retries 3
-        command major_ver == '9' ? safari_9 : safari
+        EOF
+        not_if { major_ver == '9' }
       end
     else
       log('Resource safari_extension is not supported on this platform.') { level :warn }

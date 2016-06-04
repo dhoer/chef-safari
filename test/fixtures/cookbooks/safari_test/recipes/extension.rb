@@ -6,6 +6,7 @@ privacy_services_manager 'allow remote login' do
   service 'accessibility'
   user node['safari_test']['user']
   applications %w(
+    com.apple.Terminal
     /System/Library/CoreServices/RemoteManagement/ARDAgent.app
     /System/Library/CoreServices/SystemUIServer.app
     /usr/bin/security
@@ -19,8 +20,6 @@ privacy_services_manager 'allow remote login' do
     com.apple.Safari
     com.apple.ScriptEditor2
     com.apple.systemevents
-    com.apple.Terminal
-    com.apple.iTerm
   )
   admin true
 end
