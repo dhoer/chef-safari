@@ -11,9 +11,9 @@ privacy_services_manager 'allow remote login' do
     /System/Library/CoreServices/SystemUIServer.app
     /usr/bin/security
     /usr/bin/osascript
+    /osascript
     /usr/libexec/sshd-keygen-wrapper
     com.apple.Finder
-    com.apple.LockScreen
     com.apple.RemoteDesktopAgent
     com.apple.systempreferences
     com.apple.preference.security
