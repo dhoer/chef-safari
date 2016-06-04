@@ -12,15 +12,16 @@ action :install do
 
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<-EOF
-          #!/usr/bin/env osascript
-          delay 10
-          tell application "System Events"
-            tell application process "Safari"
-              set frontmost to true
-              click button 1 of sheet 1 of window 1
-            end tell
-          end tell
-          tell application "Safari" to quit
+#!/usr/bin/env osascript
+
+delay 10
+tell application "System Events"
+  tell application process "Safari"
+    set frontmost to true
+    click button 1 of sheet 1 of window 1
+  end tell
+end tell
+tell application "Safari" to quit
         EOF
         mode '0700'
         only_if { major_ver == '9' }
