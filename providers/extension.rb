@@ -25,7 +25,7 @@ EOF
 
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<EOF
-#!/usr/bin/env osascript
+#!/usr/bin/env /usr/bin/osascript
 # tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
@@ -40,13 +40,9 @@ EOF
         only_if { major_ver == '9' }
       end
 
-      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
-        only_if { major_ver == '9' }
-      end
-
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<EOF
-#!/usr/bin/env osascript
+#!/usr/bin/env /usr/bin/osascript
 #tell application "Finder" to open POSIX file "#{new_resource.safariextz}"
 delay 10
 tell application "System Events"
@@ -64,9 +60,13 @@ EOF
         not_if { major_ver == '9' }
       end
 
-      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
-        not_if { major_ver == '9' }
+      privacy_services_manager 'allow remote login' do
+        service 'accessibility'
+        user node['safari_test']['user']
+        applications ["#{Chef::Config[:file_cache_path]}/safari_extension.sh"]
       end
+
+      execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh"
     else
       log('Resource safari_extension is not supported on this platform.') { level :warn }
     end
