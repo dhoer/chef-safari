@@ -16,12 +16,11 @@ action :install do
 open #{new_resource.safariextz}
 EOF
         mode '0777'
+        user node['safari_test']['user']
         # only_if { major_ver == '9' }
       end
 
-      execute "#{Chef::Config[:file_cache_path]}/open_safari.sh" do
-        # only_if { major_ver == '9' }
-      end
+      execute "#{Chef::Config[:file_cache_path]}/open_safari.sh"
 
       file "#{Chef::Config[:file_cache_path]}/safari_extension.sh" do
         content <<EOF
@@ -37,6 +36,7 @@ end tell
 tell application "Safari" to quit
 EOF
         mode '0777'
+        user node['safari_test']['user']
         only_if { major_ver == '9' }
       end
 
@@ -57,6 +57,7 @@ end tell
 if application "Safari" is running then quit application "Safari"
 EOF
         mode '0777'
+        user node['safari_test']['user']
         not_if { major_ver == '9' }
       end
 
@@ -64,6 +65,7 @@ EOF
         service 'accessibility'
         user node['safari_test']['user']
         applications ["#{Chef::Config[:file_cache_path]}/safari_extension.sh"]
+        admin true
       end
 
       execute "#{Chef::Config[:file_cache_path]}/safari_extension.sh"
