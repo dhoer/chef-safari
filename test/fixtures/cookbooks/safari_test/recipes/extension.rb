@@ -16,12 +16,10 @@ privacy_services_manager 'allow remote execution of applescript' do
   service 'accessibility'
   user node['safari_test']['user']
   applications %w(
-    com.apple.Finder
     com.apple.Terminal
     com.apple.ScriptEditor2
     com.apple.Safari
   )
-  admin true
 end
 
 privacy_services_manager 'allow remote execution of applescript' do
@@ -31,6 +29,8 @@ privacy_services_manager 'allow remote execution of applescript' do
     com.apple.Terminal
     com.apple.ScriptEditor2
     com.apple.Safari
+    /usr/bin/osascript
+    com.apple.Finder
   )
   admin true
 end
