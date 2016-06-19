@@ -7,7 +7,9 @@ use_inline_resources
 action :install do
   converge_by("install safari_extension #{new_resource.safariextz}") do
     if platform_family?('mac_os_x')
-      ver = ('%-4.4s' % safari_version.gsub('.','')).gsub(' ', '0')  # e.g., convert 8.0.6 to 8060
+      # rubocop:disable Style/FormatString
+      ver = ('%-4.4s' % safari_version.delete('.')).tr(' ', '0') # e.g., convert 8.0.6 to 8060
+      # rubocop:enable Style/FormatString
 
       execute new_resource.safariextz do
         retries 3

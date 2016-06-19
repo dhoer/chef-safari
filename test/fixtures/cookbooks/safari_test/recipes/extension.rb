@@ -12,11 +12,11 @@ end
 #   admin true
 # end
 
-
 privacy_services_manager 'allow remote execution of applescript' do
   service 'accessibility'
   user node['safari_test']['user']
   applications %w(
+    com.apple.Terminal
     com.apple.ScriptEditor2
     com.apple.Safari
   )
@@ -31,7 +31,6 @@ end
 # com.apple.RemoteDesktopAgent
 # com.apple.systempreferences
 # com.apple.preference.security
-
 
 macosx_gui_login node['safari_test']['user'] do
   password node['safari_test']['user']
