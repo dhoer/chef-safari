@@ -7,8 +7,7 @@ use_inline_resources
 action :install do
   converge_by("install safari_extension #{new_resource.safariextz}") do
     if platform_family?('mac_os_x')
-      ver = safari_version
-      major_ver = ver.slice(0, ver.index('.'))
+      ver = ('%-4.4s' % safari_version.gsub('.','')).gsub(' ', '0')  # e.g., convert 8.0.6 to 8060
 
       execute new_resource.safariextz do
         retries 3
@@ -27,7 +26,7 @@ action :install do
           tell application "Safari" to quit
         '
         EOF
-        only_if { major_ver >= '9' }
+        only_if { ver >= '9000' }
       end
 
       execute new_resource.safariextz do
@@ -48,7 +47,7 @@ action :install do
           if application "Safari" is running then quit application "Safari"
         '
         EOF
-        only_if { major_ver < '9' }
+        only_if { ver < '9000' }
       end
     else
       log('Resource safari_extension is not supported on this platform.') { level :warn }
